@@ -5,6 +5,10 @@ namespace modules;
 class Format{
 
 	public function local_currency($value, $currency, $language){
+		/**
+		*	Format monetary amount
+		*
+		*/
 		$fmt = new \NumberFormatter($language, \NumberFormatter::CURRENCY);
 		$fmt->setAttribute(\NumberFormatter::PADDING_POSITION, \NumberFormatter::PAD_AFTER_PREFIX);
 		$fmt->setAttribute(\NumberFormatter::FORMAT_WIDTH, 15);
@@ -13,6 +17,9 @@ class Format{
 	}
 	
 	public function local_date($value, $language, $extended=false){
+		/**
+		*	Format local date
+		*/
 		$date = new \DateTime($value);
 		$text = $extended ? \IntlDateFormatter::formatObject($date, \IntlDateFormatter::FULL, $language) : \IntlDateFormatter::formatObject($date, \IntlDateFormatter::SHORT, $language);
 		return $text;
